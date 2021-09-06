@@ -10,31 +10,30 @@ import (
 )
 
 func main() {
-	router := gin.Default()
-	router.GET("/", myFunc)
+	router := gin.Default() // have a router
+	router.GET("/", myFunc) // if GET request sent to rounter, carry out myFunc
 
 	router.Run(":8080")
 }
 
 func myFunc(c *gin.Context) {
-	str := c.Query("str")
+	str := c.Query("str") // Look for the query params named "str"
 
 	data := url.Values{}
-	data.Add("str", str)
+	data.Add("str", str) // Add that value of the str query params to a data
 
 	resp, err := http.PostForm("http://192.168.56.103:1880/app", data)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body) // Need this ioutil tool to read the resp
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	res := string(body)
+	res := string(body) // convert the response into string
 
-	c.IndentedJSON(http.StatusOK, res)
+	c.IndentedJSON(http.StatusOK, res) // convert into json
 
-	// c.IndentedJSON(http.StatusOK, "asdf")
 }
