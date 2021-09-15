@@ -17,6 +17,8 @@ func main() {
 }
 
 func myFunc(c *gin.Context) {
+	c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+
 	str := c.Query("str") // Look for the query params named "str"
 
 	data := url.Values{}

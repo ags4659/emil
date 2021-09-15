@@ -11,7 +11,12 @@ services:
   main:
     image: main 
     ports: 
-      - "80:8080"
+      - "1024:8080"
+
+  vue:
+    image: myvue
+    ports: 
+      - "8080:8080"
 
 volumes:
   node-red-data:
