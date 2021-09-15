@@ -24,7 +24,7 @@ func myFunc(c *gin.Context) {
 	data := url.Values{}
 	data.Add("str", str) // Add that value of the str query params to a data
 
-	resp, err := http.PostForm("http://192.168.56.103:1880/app", data)
+	resp, err := http.PostForm("http://127.0.0.1:1880/app", data)
 	if err != nil {
 		log.Fatal(err)
 	}
